@@ -88,6 +88,16 @@
       transform: translateY(-2px);
     }
 
+    .success {
+      display: none;
+      margin-top: 35px;
+      font-size: 20px;
+      font-weight: 700;
+      color: #a855f7;
+      letter-spacing: 0.5px;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
     .footer {
       margin-top: 40px;
       font-size: 14px;
@@ -99,54 +109,52 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* MOBILE OPTIMIZATION */
-@media (max-width: 600px) {
+    /* MOBILE */
+    @media (max-width: 600px) {
 
-  body {
-    padding: 30px 20px;
-  }
+      body {
+        padding: 30px 20px;
+      }
 
-  .logo {
-    width: 90px;
-    margin-bottom: 20px;
-  }
+      .logo {
+        width: 90px;
+        margin-bottom: 20px;
+      }
 
-  h1 {
-    font-size: 28px;
-    line-height: 1.15;
-  }
+      h1 {
+        font-size: 28px;
+        line-height: 1.15;
+      }
 
-  p {
-    font-size: 15px;
-    margin-top: 15px;
-    line-height: 1.4;
-  }
+      p {
+        font-size: 15px;
+        margin-top: 15px;
+        line-height: 1.4;
+      }
 
-  form {
-    margin-top: 30px;
-    flex-direction: column;
-    gap: 12px;
-  }
+      form {
+        margin-top: 30px;
+        flex-direction: column;
+        gap: 12px;
+      }
 
-  input[type="email"] {
-    width: 100%;
-    padding: 14px;
-  }
+      input[type="email"] {
+        width: 100%;
+        padding: 14px;
+      }
 
-  button {
-    width: 100%;
-    padding: 14px;
-    font-size: 15px;
-  }
+      button {
+        width: 100%;
+        padding: 14px;
+        font-size: 15px;
+      }
 
-  .footer {
-    margin-top: 25px;
-    font-size: 13px;
-  }
+      .footer {
+        margin-top: 25px;
+        font-size: 13px;
+      }
 
-}
-
-
+    }
   </style>
 </head>
 
@@ -163,21 +171,35 @@
       Be the first to experience Axser IO.
     </p>
 
-    <form action="https://formsubmit.co/info@axser.in" method="POST">
-      
+    <form id="emailForm" action="https://formsubmit.co/info@axser.in" method="POST">
       <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="https://axser.io">
+      <input type="hidden" name="_subject" value="New Early Access Signup">
 
       <input type="email" name="email" placeholder="Enter your email" required>
       <button type="submit">Join Early Access</button>
-
     </form>
+
+    <div class="success" id="successMessage">
+      EARLY ACCESS SECURED.
+    </div>
 
     <div class="footer">
       © 2026 Axser IO. All rights reserved.
     </div>
 
   </div>
+
+  <script>
+    const form = document.getElementById("emailForm");
+    const success = document.getElementById("successMessage");
+
+    form.addEventListener("submit", function() {
+      setTimeout(function() {
+        form.style.display = "none";
+        success.style.display = "block";
+      }, 600);
+    });
+  </script>
 
 </body>
 </html>
