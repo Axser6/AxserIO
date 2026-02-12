@@ -5,6 +5,7 @@
   <title>Axser IO — Early Access</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <style>
     * {
       margin: 0;
@@ -26,6 +27,13 @@
 
     .container {
       max-width: 700px;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    .logo {
+      width: 130px;
+      margin-bottom: 30px;
+      filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.6));
     }
 
     h1 {
@@ -70,11 +78,12 @@
       font-weight: 600;
       font-size: 16px;
       cursor: pointer;
-      transition: 0.3s;
+      transition: 0.3s ease;
     }
 
     button:hover {
       background: #9333ea;
+      transform: translateY(-2px);
     }
 
     .footer {
@@ -82,26 +91,41 @@
       font-size: 14px;
       color: #777;
     }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
+
 <body>
 
   <div class="container">
+
+    <img src="logo.png" alt="Axser Logo" class="logo">
+
     <h1>Axser IO.<br><span class="highlight">OWN WHAT'S REAL.</span></h1>
-    <p>The future of connected identity is coming.<br>Be the first to experience Axser IO.</p>
+
+    <p>
+      The future of connected identity is coming.<br>
+      Be the first to experience Axser IO.
+    </p>
 
     <form action="https://formsubmit.co/info@axser.in" method="POST">
-
+      
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_next" value="https://axser.io">
 
-      <input type="email" name="email" placeholder="info@axser.in" required>
+      <input type="email" name="email" placeholder="Enter your email" required>
       <button type="submit">Join Early Access</button>
+
     </form>
 
     <div class="footer">
       © 2026 Axser IO. All rights reserved.
     </div>
+
   </div>
 
 </body>
