@@ -160,43 +160,51 @@
 
   </div>
 
-  <!-- EmailJS -->
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
-  <script>
-    (function(){
-      emailjs.init("gBbKX6sQqnjX6lThq");
-    })();
+<script>
+  (function(){
+    emailjs.init("gBbKX6sQqnjX6lThq");
+  })();
 
-    const form = document.getElementById("emailForm");
-    const success = document.getElementById("successMessage");
-    const button = form.querySelector("button");
+  const form = document.getElementById("emailForm");
+  const success = document.getElementById("successMessage");
+  const button = form.querySelector("button");
 
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
 
-      button.disabled = true;
-      button.innerText = "Securing...";
+    button.disabled = true;
+    button.innerText = "Securing...";
 
-      const emailValue = document.querySelector('input[name="email"]').value;
+    const emailValue = document.querySelector('input[name="email"]').value;
 
-      emailjs.send("service_joqfufj", "template_2uc93w8", {
-        user_email: emailValue
-      })
-      .then(function() {
-        form.style.opacity = "0";
-        setTimeout(() => {
-          form.style.display = "none";
-          success.style.display = "block";
-        }, 300);
-      }, function(error) {
-        button.disabled = false;
-        button.innerText = "Join Early Access";
-        alert("Something went wrong.");
-        console.log(error);
-      });
+    // 1️⃣ Send admin notification
+    emailjs.send("service_joqfufj", "template_2uc93w8", {
+      user_email: emailValue
     });
-  </script>
+
+    // 2️⃣ Send welcome email to user
+    emailjs.send("service_joqfufj", "template_o9ipopf", {
+      user_email: emailValue
+    })
+    .then(function() {
+      form.style.opacity = "0";
+      setTimeout(() => {
+        form.style.display = "none";
+        success.style.display = "block";
+      }, 300);
+    })
+    .catch(function(error) {
+      button.disabled = false;
+      button.innerText = "Join Early Access";
+      alert("Something went wrong.");
+      console.log(error);
+    });
+  });
+</script>
+
 
 </body>
 </html>
