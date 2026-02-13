@@ -183,11 +183,15 @@
     try {
 
       // 1️⃣ Save to Google Sheet
-      await fetch("https://script.google.com/macros/s/AKfycbysvuaMs99513ApYKKeCC9PUKrMY_vGXy7IsJQ-0PGLufBCGysTSsYAxV6J6Zziqvbrvw/exec", {
-        method: "POST",
-        body: JSON.stringify({ email: emailValue }),
-        headers: { "Content-Type": "application/json" }
-      });
+      fetch("https://script.google.com/macros/s/AKfycbysvuaMs99513ApYKKeCC9PUKrMY_vGXy7IsJQ-0PGLufBCGysTSsYAxV6J6Zziqvbrvw/exec", {
+  method: "POST",
+  mode: "no-cors",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({ email: emailValue })
+});
+
 
       // 2️⃣ Send Admin Email
       await emailjs.send("service_joqfufj", "template_2uc93w8", {
